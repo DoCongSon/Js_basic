@@ -32,7 +32,12 @@ console.log(Number.parseFloat('18 is my age')) // 18
 console.log(num2.toFixed());
 console.log(num2.toFixed(0));
 console.log(num2.toFixed(3));
-// Number.prototype.toString()	//Chuyển đổi và trả về số đã cho dưới dạng chuỗi
 
-console.log(num2.toString()
-);
+// Number.prototype.toString()	//Chuyển đổi và trả về số đã cho dưới dạng chuỗi
+console.log(num2.toString());
+function run(a) {
+    return Number.isInteger(a) ? a : Math.floor(a)
+}
+
+console.log(run(2));
+console.log(run(2.642224342));
