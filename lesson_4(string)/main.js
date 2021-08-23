@@ -36,7 +36,4 @@ console.log(name2.toUpperCase());
 console.log(name.trim()) // loại bỏ khoảng trắng ở đầu và cuối string
 console.log(name2.split(" ")); // tách chuỗi trả về Array
 console.log(name2.indexOf(1));
-console.log(isNaN(name2));
-function stringInString(needle, haystack) {
-    
-}
+console.log(name2.includes(1,7));// kiểm tra xem trong chuỗi có chứa 1 ko, kiểm ttra từ phần tử thứ 7. trả về true fales

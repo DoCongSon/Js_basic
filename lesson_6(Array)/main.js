@@ -39,3 +39,82 @@ var arr3 = arr1.concat(arr2)
 console.log(arr3)
 // slice: trả về mảng mới được cắt với tham số cho trước
 console.log(arr3.slice(3, 5));
+
+var students = [
+    {
+        fname: "Đỗ",
+        lname: "Thuỳ Trang",
+        age: 14, 
+        home: 'myhome'
+    },
+    {
+        fname: "Đỗ",
+        lname: "Quang Thiện",
+        age: 10,
+        home: 'myhome'
+    },
+    {
+        fname: "Đỗ",
+        lname: "Công Sơn",
+        age: 20,
+        home: 'myhome'
+    },
+    {
+        fname: "Đỗ",
+        lname: "Công Sơn",
+        age: 10,
+        home: 'myhome'
+    },
+    {
+        fname: "lê",
+        lname: "Thị Ngoan",
+        age: 20,
+        home: 'myhome'
+    }
+]
+
+// forEach() dùng để duyệt từng phần tử trong array
+students.forEach(function (student, index) {
+    console.log(index , student);
+
+})
+arr3.forEach(function (i) {
+    console.log(i);
+})
+
+// every() dùng để so sánh các thuộc tính của mảng các đối tượng (object)
+// nếu tất cả đều giống nhau trả về true còn ko trả về false
+var isHome = students.every(function (student) {
+    return student.home === 'myhome'
+})
+var isFname = students.every(function (student) {
+    return student.fname === 'Đỗ'
+})
+console.log(isHome)
+console.log(isFname)
+
+// some() ngược lại với every().
+// ít nhất 1 phần tử trong mảng thoả mãn điều kiện thì trả về true
+// chỉ trường hợp không có phần tử nào thoả mãn thì mới trả về false
+var isAge = students.some(function (student) {
+    return student.age === 20
+})
+console.log(isAge);
+var isAge = students.some(function (student) {
+    return student.age === 21   
+})
+console.log(isAge);
+
+// find() 
+// tìm phần tử trong mảng và trả về phần tử đầu tiên tìm được
+var son = students.find(function (student) {
+    return student.lname === "Công Sơn"
+})
+console.log(son);
+
+//  filter() giông find() nhưng trả về mảng chứa tất cả phần tử tìm được
+var sons = students.filter(function (student) {
+    return student.lname === "Công Sơn"
+})
+console.log(sons);
+
