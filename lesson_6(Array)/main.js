@@ -117,4 +117,24 @@ var sons = students.filter(function (student) {
     return student.lname === "Công Sơn"
 })
 console.log(sons);
+// reduce
+var arr = [function () {} ,'sa',1, 10, 32, {}, 20]
+function sumNumberToArr(arr) {
+    return arr.reduce(function (sum,i) {
+        if (typeof i === 'number') {
+            console.log(sum);
+            return sum + i
+        }
+        console.log(sum);
+        return sum
+        
+    },0)
+}
+function sumNumberToArr1(arr) {
+    return arr.reduce((sum, i) => (typeof i === 'number') ? sum + i: sum , 0)
+}
 
+console.log(sumNumberToArr1(arr))
+function name(params) {
+    
+}
