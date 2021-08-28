@@ -160,3 +160,26 @@ var newStudents = students.map((element, index, originalArray) => {
     }
 })
 console.log(newStudents);
+
+// chú ý array có thể thay đổi length như vd đưới đây 
+// trong đo 3 phần tử có thật và 7 phần tử empty trống
+// khi duyệt mảng với for thì sẽ chạy không chính xác vì length tính cả empty
+// để khắc phục ta có theer dùng for in 
+
+var courses = [
+    'javascript',
+    'phython',
+    'java'
+];
+
+courses.length = 10;
+console.log(courses.length);
+console.log(courses);
+console.log('vd sử dụng for sẽ lặp qua cả phần tử empty');
+for (let index = 0; index < courses.length; index++) {
+    console.log(courses[index]);
+}
+console.log('sử dụng for in sẽ bỏ qua không lặp phần tử empty');
+for (const index in courses) {
+    console.log(courses[index]);
+}
