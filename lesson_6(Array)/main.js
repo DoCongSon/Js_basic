@@ -138,3 +138,25 @@ console.log(sumNumberToArr1(arr))
 function name(params) {
     
 }
+// map
+// dùng để chỉnh sửa nội dung của đối tượng và nhiều thứ khác
+// vd láy ra mảng chỉ chứa lname của students ta làm như sau
+
+var arrLastName = students.map((element, index, originalArray) => {
+    return element.lname
+})
+console.log(arrLastName);
+
+// VD thêm, bớt, chỉnh sửa key cho từng đối tượng trong mảng
+
+var newStudents = students.map((element, index, originalArray) => {
+    return {
+        index: index,
+        fname: element.fname,
+        lname: element.lname, 
+        home: 'Home: ' + element.home,
+        coin: 9999,
+        originalArray: originalArray
+    }
+})
+console.log(newStudents);
