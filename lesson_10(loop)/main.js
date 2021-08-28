@@ -26,24 +26,42 @@ console.log('giá trị của j sau khi kết thúc vòng lặp là: ' + j); // 
 // Trong ví dụ đầu tiên, sử dụng var, biến được khai báo trong vòng lặp khai báo lại biến bên ngoài vòng lặp.
 // Trong ví dụ thứ hai, sử dụng let, biến được khai báo trong vòng lặp không khai báo lại biến bên ngoài vòng lặp.
 // Khi let được sử dụng để khai báo biến i trong một vòng lặp, biến i sẽ chỉ hiển thị trong vòng lặp.
-
+console.log('-----------------------------------------');
 // * 2 for-in
-// biến key ở vd dưới lặp qua thuọc tính của object 
-
+// biến key ở vd dưới lặp qua thuọc tính của object
+// lặp cả thuộc tính prototype tự tạo.
+// để ko lặp thuôc tính này cần kiểm tra với hàm hasOwnProperty(key) với kay là thuộc tính cần kiểm tra
+// trả về true nếu ko năm trong prototype, false nếu nằm trong prototype
+// xem 2 vd dưới đây
 const person = {fname:"Đỗ", lname:"Công Sơn", age:20};
+Object.prototype.test = function(){}
+Array.prototype.test2 = function(){}
+Array.prototype.test3 = 2
 
+console.log('vd1 chưa sử dụng hàm kiểm tra hasOwnProperty');
 for (const key in person) {
     console.log(`${key}: ${person[key]}`);
 }
+console.log('vd2 đã sử dụng hàm hasOwnProperty để loại đi thuộc tính trong prototype');
+for (const key in person) {
+    if (person.hasOwnProperty(key)) {
+        console.log(`${key}: ${person[key]}`);
+    }
+}
+console.log('---------------+--------------');
 // Câu lệnh for-in cũng có thể lặp lại các thuộc tính của Mảng với x được tự động từ 0 -> hết
 const numbers = [45, 4, 9, 16, 25];
 let txt = "";
 for (let x in numbers) {
-  txt += numbers[x];
   console.log(`${x}: ${numbers[x]}`);
 }
-console.log(txt);
-
+console.log('+++++++++++++++++++++++++');
+for (let x in numbers) {
+    if (numbers.hasOwnProperty(x)) {
+      console.log(`${x}: ${numbers[x]}`);
+    }
+}
+console.log('+++++++++++++++++++++++++');
 // * 3. for- of
 // Câu lệnh for-of lặp qua các giá trị của một đối tượng có thể lặp lại.
 // Nó cho phép bạn lặp qua các cấu trúc dữ liệu có thể lặp lại như Arrays, Strings, Maps, NodeLists,...
