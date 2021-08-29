@@ -162,7 +162,7 @@ var newStudents = students.map((element, index, originalArray) => {
 console.log(newStudents);
 
 // chú ý array có thể thay đổi length như vd đưới đây 
-// trong đo 3 phần tử có thật và 7 phần tử empty trống
+// trong đó 3 phần tử có thật và 7 phần tử empty trống
 // khi duyệt mảng với for thì sẽ chạy không chính xác vì length tính cả empty
 // để khắc phục ta có theer dùng for in 
 
