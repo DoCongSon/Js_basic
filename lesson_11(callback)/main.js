@@ -1,6 +1,7 @@
 
 // reduce2
 var number = [1,23,4,5,64,64,64]
+number.length = 1000
 
 Array.prototype.reduce2 = function(callback, result) {
     var i = 0
@@ -50,11 +51,13 @@ var students = [
         home: 'myhome'
     }
 ]
-
+students.length = 1000;
 // forEach2
 Array.prototype.forEach2 = function(callback) {
-    for (var i = 0; i < this.length; i++) {
-        callback(this[i], i)
+    for (const index in this) {
+        if (this.hasOwnProperty(index)) {
+            callback(this[index], index);
+        }
     }
 }
 
@@ -64,9 +67,9 @@ students.forEach2(function (element, index) {
 
 // every2
 Array.prototype.every2 = function(callback) {
-    for (var i = 0; i < this.length; i++) {
-        if (!callback(this[i])) {
-            return false
+    for (const index in this) {
+        if (this.hasOwnProperty(index)) {
+            if(!callback(this[index])) return false;
         }
     }
     return true
@@ -82,9 +85,9 @@ console.log(isFname)
 
 // some
 Array.prototype.some2 = function (callback) {
-    for(var i = 0; i < this.length; i++) {
-        if (callback(this[i])) {
-            return true;
+    for (const index in this) {
+        if (this.hasOwnProperty(index)) {
+            if (callback(this[index])) return true;
         }
     }
     return false;
@@ -99,10 +102,13 @@ var isAge = students.some2(function (student) {
 console.log(isAge);
 
 //find2
-
 Array.prototype.find2 = function (callback) {
-    for (var i = 0; i < this.length; i++) {
-        if (callback(this[i])) return this[i];
+    for (const index in this) {
+        if (this.hasOwnProperty(index)) {
+            if (callback(this[index])) {
+                return this[index];
+            }
+        }
     }
 }
 
@@ -114,8 +120,12 @@ console.log(son);
 //  filter2
 Array.prototype.filter2 = function (callback) {
     var result = [];
-    for (var i = 0; i < this.length; i++) {
-        if (callback(this[i])) result.push(this[i]);
+    for (const index in this) {
+        if (this.hasOwnProperty(index)) {
+            if (callback(this[index])) {
+                result.push(this[index])
+            }
+        }
     }
     return result;
 }
@@ -130,8 +140,10 @@ console.log(sons);
 
 Array.prototype.map2 = function (callback) {
     var result = [];
-    for (var i = 0; i < this.length; i++) {
-        result.push(callback(this[i], i, this[i]))
+    for (const index in this) {
+        if (this.hasOwnProperty( index)) {
+            result.push(callback(this[index], index, this)) 
+        }
     }
     return result;
 }
