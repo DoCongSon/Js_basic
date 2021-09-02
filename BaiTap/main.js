@@ -57,3 +57,12 @@ function findEqualValues2(arr1, arr2) {
     })
 }
 console.log(findEqualValues2([1, 2, 6, 8], [2, 9, 8, 6]));
+// -----------------
+var elementNode = document.querySelector('div')
+console.log([elementNode]);
+var textNode1 = elementNode.childNodes[0]
+var textNode2 = elementNode.childNodes[2]
+var h1Element = elementNode.children[0]
+console.log(textNode1);
+console.log(textNode2);
+console.log(h1Element);
