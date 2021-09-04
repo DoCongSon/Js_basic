@@ -25,3 +25,32 @@ document.getElementById('box').classList.add('yellow-text')
 setInterval(function (params) {
    document.getElementById('box').classList.toggle('green-text')
 }, 300)
+
+//! DOM events
+/**
+ ** 1, Thêm sự kiện bằng HTML attribute.
+ ** 2, Thêm sự kiện bằng javascript.
+ */
+
+// 1, Thêm sự kiện bằng HTML attribute.
+// vd: <div id="series" onclick="alert('Bạn vừa click')">Học CSS</div>
+
+/**
+ * 2, Thêm sự kiện bằng javascript. 
+ * cú pháp chung
+ ** element.eventName = function ()
+ ** {
+ **     //code
+ ** }
+ * Trong đó:
+ * element là các đối tượng HTML (được gọi bằng các phương thức getElement...).
+ * eventName là tên các sự kiện như onclick,onmouseover,...
+ */
+var arr = document.getElementsByTagName('h1')
+for (const i in arr) {
+   if (arr.hasOwnProperty(i)) {
+      arr[i].onclick = function (e) {
+         console.log(e.target.textContent)
+      }
+   }
+}
