@@ -21,6 +21,31 @@
     <button type="submit">Xác nhận</button><br>
     <a href="https://www.facebook.com/">facebook</a>
     <a href="https://www.youtube.com/">youtobe</a>
+    <div class="box-ong-noi">
+        box ông nội
+        <div class="box-cha">
+            box cha
+            <div class="box-con">box con</div>
+        </div>
+    </div>
+    <input type="search" placeholder="tìm kiếm">
+    <ul>
+        <li>java</li>
+        <li>golang</li>
+        <li>phython</li>
+    </ul>
+    <style>
+        ul {
+            display: none;
+        }
+        input[type="search"]:focus ~ ul {
+            display: block;
+        }
+    </style>
+    <br>
+    <h2>sự khác nhau giữa Event Handlers và AddEventListener trong js</h2>
+    <button class="btn-1">Event Handlers</button>
+    <button class="btn-2">AddEventListener</button>
     <script src="./main.js"></script>
 </body>
 </html>
