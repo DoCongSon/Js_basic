@@ -1,0 +1,28 @@
+{
+  "user": [
+    {
+      "name": "an",
+      "age": "22",
+      "contry": "vietnam",
+      "email": "an@gmail.com",
+      "id": 1
+    },
+    {
+      "name": "son",
+      "age": "21",
+      "contry": "vietnam",
+      "email": "son@gmail.com",
+      "id": 2
+    }
+  ],
+  "language": [
+    {
+      "id": 1,
+      "language": [
+        "HTML-CSS",
+        "Java script",
+        "Java"
+      ]
+    }
+  ]
+}
