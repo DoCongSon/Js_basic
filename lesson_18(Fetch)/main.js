@@ -19,3 +19,12 @@ fetch(userAPI)
         })
         document.getElementById('user-list').innerHTML = htmls.join('\n')
     })
+
+var userAPI2 = "http://localhost:3000/user"
+fetch(userAPI2)
+    .then(function (response) {
+        return response.json()
+    })
+    .then(function (result) {
+        console.log(result)
+    })
