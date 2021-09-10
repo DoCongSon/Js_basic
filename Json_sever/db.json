@@ -24,5 +24,13 @@
         "Java"
       ]
     }
+  ],
+  "book": [
+    {
+      "name": "java",
+      "price": "12",
+      "description": "description",
+      "id": 1
+    }
   ]
 }
