@@ -297,3 +297,80 @@ console.log(html);
 <a name="13"></a>
 
 ### 13. Modules
+#### Các biến thể export
+- Một module là một tập hợp, một gói, một packet, chứa data - ví dụ các biến lưu giữ state,..., các hàm (function hoặc method) lấy dữ liệu, thao tác, thay đổi giá trị, các biến state đó nhằm phục vụ một chức năng nhất định. Để dễ hình dung thì các library, npm package ta dùng hằng ngày nhìn chung chính là các module.
+- sử dụng key word "import" và "export"
+```javascript
+var log = function (message, type = TYPE_LOG) {
+    console[type](message);
+}
+export default log;
+// export var log = function (message, type = TYPE_LOG) {
+//     console[type](message);
+// }
+```
+- Ngoài cách export một object như trên, ESM còn cho phép chúng ta thoải mái sử dụng cú pháp export cho từng biến hay function cụ thể (named export):
+```javascript 
+// awesome-library.js
+export const PI = 3.1415926;
+
+export function sum(...args) {
+  log('sum', args);
+  return args.reduce((num, tot) => tot + num);
+}
+
+export function mult(...args) {
+  log('mult', args);
+  return args.reduce((num, tot) => tot * num);
+}
+
+// private function
+function log(...msg) {
+  console.log(...msg);
+}
+```
+- Một biến thể nữa là default export.
+  - Khác với named export, một module chỉ có duy nhất một default export. Nếu người dùng không chỉ rõ phần nào cần import, mà chỉ import mopdule một cách chung chung, thì phần export default này sẽ được import.
+```javascript
+export default function getName(studentID) {
+  // ..
+}
+```
+#### Các biến thể import
+##### Named import
+- Sử dụng "named import", chúng ta sẽ import những thứ cần thiết, tránh import cả module.
+```javascript
+import { sum, mult } from './lib.js';
+
+console.log(sum(1, 2, 3, 4));
+console.log(mult(1, 2, 3, 4));
+```
+##### Alias thành một cái tên khác
+- Bằng cách sử dụng keyword **as**, chúng ta có thể import và gán một cái tên khác cho phần api vừa được import.
+```javascript
+import { sum as addAll, mult as multiplyAll } from './lib.js';
+
+console.log(addAll(1, 2, 3, 4));
+console.log(multiplyAll(1, 2, 3, 4));
+```
+##### default import
+- Như đã nhắc đến phía trên, nếu module có export default, thì khi đứng ở module khác chúng ta có thể import phần default đó như sau:
+```javascript
+import getName from "/path/to/students.js";
+
+getName(73);
+```
+- Mix vừa default import vừa named import
+```javascript
+import { default as getName, /* .. others .. */ }
+   from "/path/to/students.js";
+
+getName(73);
+```
+##### Namespace import
+- Cuối cùng, bạn có thể sử dụng dấu * để import toàn bộ mọi thứ được export bên trong một module, bao gồm cả default và named export, gom chúng thành một name space - một biến xài chung như sau:
+```javascript
+import * as Student from "/path/to/students.js";
+
+Student.getName(73);
+```
