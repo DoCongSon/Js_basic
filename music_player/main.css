@@ -106,7 +106,7 @@ body {
     cursor: pointer;
 }
 .playlists {
-    height: 250px;
+    max-height: 250px;
     margin-top: 472px;
 }
 .song{
