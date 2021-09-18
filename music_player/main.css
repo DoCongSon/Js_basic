@@ -83,6 +83,7 @@ body {
 }
 .button span {
     font-size: 32px;
+    user-select: none;
 }
 .progress {
     margin: 0 12px 16px;
