@@ -23,7 +23,9 @@ document.getElementById('box').classList.remove('red-text')
 // 4. toggel dùng để thêm class nếu element chưa có class đó và xoá class đó đi nếu trong element đã có
 document.getElementById('box').classList.add('yellow-text')
 setInterval(function (params) {
-   document.getElementById('box').classList.toggle('green-text')
+   console.log(document.getElementById('box').classList.toggle('green-text'));
+   // đối số thứ 2 là boolean. nếu true thì giống với add, false giống remove, return true, false tương ứng
+   // document.getElementById('box').classList.toggle('green-text', <true/false>);
 }, 300)
 
 //! DOM events

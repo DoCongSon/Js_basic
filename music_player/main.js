@@ -10,11 +10,14 @@ const toggel_play_icon = $('.toggel_play-button span');
 const progress = $('.progress');
 const previous = $('.skip_previous-button');
 const next = $('.skip_next-button');
-
+const replay = $('.replay-button');
+const shuffle = $('.shuffle-button');
 
 const app = {
     currentIndex: 0,
     isPlaying: false,
+    isReplay: false,
+    isShuffle: false,
     songs: [
         {
             name: 'Cưới thôi',
@@ -53,7 +56,7 @@ const app = {
             img: './assets/img/saigondaulongqua.jpg'
         },
         {
-            name: ' Chúng Ta Sau Nàyá',
+            name: ' Chúng ta sau này',
             singer: 'T.R.I',
             path: './assets/music/ChungTaSauNay-TRI.mp3',
             img: './assets/img/chungtasaunay.jpg'
@@ -76,9 +79,8 @@ const app = {
     // hàm sử lý sự kiện
     handleEvents: function() {
         const _this = this;
-        // sử lý thu phóng CD
         const cdWidth = cd.offsetWidth;
-
+        
         // sử lý cd quay
         const cd_animate = cd.animate([
             {
@@ -90,6 +92,9 @@ const app = {
             // lặp vô hạn
             iterations: Infinity 
         })
+        cd_animate.pause();
+        
+        // sử lý thu phóng CD
         document.onscroll = function () {
             // window.scrollY ~ document.documentElement.scrollTop
             var scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -100,7 +105,6 @@ const app = {
             cd.style.height = (newCdWidth > 0) ? newCdWidth + 'px' : 0; 
             cd.style.opacity = newCdWidth / cdWidth;
         }
-        cd_animate.pause();
 
         // sử lý click play
         toggel_play.onclick = function() { 
@@ -144,14 +148,17 @@ const app = {
             const time_progress = e.target.value / 100 * audio.duration;
             
             if (time_progress) {
-                console.log(time_progress.toFixed(0));
                 audio.currentTime = time_progress.toFixed(0);
             }
         }
 
         // sử lý khi ấn next bài hát
         next.onclick = function () {
-            _this.nextSong();
+            if (_this.isShuffle) {
+               _this.shuffleSong(); 
+            } else {
+                _this.nextSong();
+            }
             if (_this.isPlaying) {
                 audio.play();
             } else {
@@ -161,17 +168,41 @@ const app = {
 
         // sử lý khi ấn previous bài hát
         previous.onclick = function () {
-            _this.previousSong();
+            if (_this.isShuffle) {
+                _this.shuffleSong(); 
+            } else {
+                _this.previousSong();
+            }
             if (_this.isPlaying) {
                 audio.play();
             } else {
                 audio.pause();
             }
         }
+
+        // sử lý khi ấn replay bài hát
+        replay.onclick = function() {
+            _this.isReplay = !_this.isReplay;
+            this.classList.toggle('active', _this.isReplay);
+        }
+
+        // sử lý khi ấn shuffle bài hát
+        shuffle.onclick = function() {
+            _this.isShuffle = !_this.isShuffle;
+            this.classList.toggle('active', _this.isShuffle);
+        }
+
+        // sử lý khi bài hát kết thúc
+        audio.onended = function() {
+            if (!_this.isReplay) {
+                next.click();
+            }
+            audio.play();
+        }
     },
     // render HTML
     render: function() {
-        var htmls = this.songs.map(function(song) {
+        var htmls = this.songs.map(function(song, index) {
             return `<div class="song">
             <div class="song__thumb" style="background-image: url(${song.img})"></div>
             <div class="song__info">
@@ -185,7 +216,8 @@ const app = {
             </div>
           </div>`
         }).join('\n');
-        $('.playlists').innerHTML = htmls;
+        $('.playlists').innerHTML = htmls;  
+        this.songActive();
     },
 
     loadCurrentSong: function() {
@@ -202,6 +234,7 @@ const app = {
             this.currentIndex++;
         }
         this.loadCurrentSong();
+        this.songActive();
     },
 
     previousSong: function () {
@@ -212,6 +245,33 @@ const app = {
             this.currentIndex--;
         }
         this.loadCurrentSong();
+        this.songActive();
+    },
+
+    replaySong: function () {
+        if (this.isReplay) {
+            audio.replay();
+        }
+    },
+
+    shuffleSong: function () {
+        let newCurentIndex;
+        do {
+            newCurentIndex = Math.floor(Math.random() * this.songs.length)
+        } while (newCurentIndex === this.currentIndex);
+        this.currentIndex = newCurentIndex;
+        this.loadCurrentSong();
+    },
+
+    songActive: function () {
+        $$('.song').forEach((element, index) => {
+            if (element.classList.length === 2) {
+                element.classList.remove('active');
+            }
+            if (this.currentIndex === index) {
+                element.classList.add('active');
+            }
+        });
     },
 
     start: function() {
