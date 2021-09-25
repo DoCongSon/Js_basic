@@ -1,6 +1,8 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
+const PLAYER_STORAGE_KEY = 'PLAYER';
+
 const dashboard__header = $('.dashboard__header h3');
 const thums_CD = $('.thums-CD');
 const audio = $('#audio');
@@ -12,12 +14,18 @@ const previous = $('.skip_previous-button');
 const next = $('.skip_next-button');
 const replay = $('.replay-button');
 const shuffle = $('.shuffle-button');
+const playList = $('.playlists');
 
 const app = {
     currentIndex: 0,
     isPlaying: false,
     isReplay: false,
     isShuffle: false,
+    config: JSON.parse(localStorage.getItem('PLAYER_STORAGE_KEY')) || {},
+    setConfig: function(key, value) {
+        this.config[key] = value;
+        localStorage.setItem('PLAYER_STORAGE_KEY', JSON.stringify(this.config));
+    },
     songs: [
         {
             name: 'Cưới thôi',
@@ -164,6 +172,7 @@ const app = {
             } else {
                 audio.pause();
             }
+            _this.scrollToActiveSong();
         }
 
         // sử lý khi ấn previous bài hát
@@ -178,17 +187,20 @@ const app = {
             } else {
                 audio.pause();
             }
+            _this.scrollToActiveSong();
         }
 
         // sử lý khi ấn replay bài hát
         replay.onclick = function() {
             _this.isReplay = !_this.isReplay;
+            _this.setConfig('isReplay', _this.isReplay);
             this.classList.toggle('active', _this.isReplay);
         }
 
         // sử lý khi ấn shuffle bài hát
         shuffle.onclick = function() {
             _this.isShuffle = !_this.isShuffle;
+            _this.setConfig('isShuffle', _this.isShuffle);
             this.classList.toggle('active', _this.isShuffle);
         }
 
@@ -199,11 +211,34 @@ const app = {
             }
             audio.play();
         }
+
+        // sử lý khi click vào playList
+        playList.onclick = function(e) {
+            const song_node = e.target.closest('.song:not(.active)');
+            if (e.target.closest('.song__more')) {
+                // sử lý khi click vào nút more_horiz trong bài hát
+                console.log(e.target.closest('.song__more'));
+            }
+            else if (song_node) {
+                // sử lý khi click vào bài hát trong playList
+
+                // console.log(song_node.getAttribute('data-song_index'));
+
+                // câu lệnh dưới tương tự câu trên với đk attributes có chứa data-data_type
+                // sử dụng giống bên dưới element.dataset.data-type lấy giá trị của attribute data-data-type
+                _this.currentIndex = Number(song_node.dataset.song_index);
+                _this.loadCurrentSong();
+                _this.songActive();
+                if (_this.isPlaying) {
+                    audio.play();
+                }
+            }
+        }
     },
     // render HTML
     render: function() {
         var htmls = this.songs.map(function(song, index) {
-            return `<div class="song">
+            return `<div class = "song" data-song_index = "${index}">
             <div class="song__thumb" style="background-image: url(${song.img})"></div>
             <div class="song__info">
               <h3 class="song__name">${song.name}</h3>
@@ -216,7 +251,7 @@ const app = {
             </div>
           </div>`
         }).join('\n');
-        $('.playlists').innerHTML = htmls;  
+        playList.innerHTML = htmls;  
         this.songActive();
     },
 
@@ -224,6 +259,14 @@ const app = {
         dashboard__header.innerText = this.currentSong.name;
         thums_CD.style.backgroundImage = `url(${this.currentSong.img})`;
         audio.src = this.currentSong.path;
+    },
+
+    loadConfig: function () {
+        this.isReplay = this.config.isReplay;
+        replay.classList.toggle('active', this.isReplay);
+        
+        this.isShuffle = this.config.isShuffle;
+        shuffle.classList.toggle('active', this.isShuffle);
     },
 
     nextSong: function () {
@@ -274,7 +317,20 @@ const app = {
         });
     },
 
+    scrollToActiveSong: function () {
+        setTimeout(() => {
+            $('.song.active').scrollIntoView(
+                {
+                    bihavior: 'smooth',
+                    block: 'end',
+                }
+            );
+        }, 100);
+    },
+
     start: function() {
+        this.loadConfig();
+
         this.definePropertys();
         this.handleEvents();
 

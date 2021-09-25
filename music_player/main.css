@@ -6,11 +6,13 @@
 
 body {
     font-family: 'Work Sans', sans-serif;
+    scroll-behavior: smooth;
 }
 
 .music-player {
     max-width: 480px;
     margin: 0 auto;
+    user-select: none;
 }
 
 .dashboard {
@@ -22,7 +24,6 @@ body {
     position: fixed;
     top: 0;
     max-width: 480px;
-    margin-top: 40px;
     background-image: linear-gradient(90deg, #d3cce3 0%, #e9e4f0 100%);
     border-radius: 10px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -75,6 +76,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .button.active {
@@ -88,7 +90,6 @@ body {
 }
 .button span {
     font-size: 32px;
-    user-select: none;
 }
 .progress {
     margin: 0 12px 16px;
@@ -113,7 +114,7 @@ body {
 }
 .playlists {
     max-height: 250px;
-    margin-top: 472px;
+    margin-top: 432px;
 }
 .song{
     color: #414343;
@@ -124,6 +125,7 @@ body {
     background-image: linear-gradient(90deg, #d3cce3 0%, #e9e4f0 100%);
     border-radius: 10px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    cursor: pointer;
 }
 .song.active {
     background-image: linear-gradient(90deg, #355c7d 0%, #6c5b7b 50%, #c06c84 100%);
