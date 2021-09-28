@@ -241,15 +241,15 @@ const app = {
             return `<div class = "song" data-song_index = "${index}">
             <div class="song__thumb" style="background-image: url(${song.img})"></div>
             <div class="song__info">
-              <h3 class="song__name">${song.name}</h3>
-              <p class="song__singer">${song.singer}</p>
+                <h3 class="song__name">${song.name}</h3>
+                <p class="song__singer">${song.singer}</p>
             </div>
             <div class="song__more">
-              <span class="material-icons-round">
+                <span class="material-icons-round">
                 more_horiz
-              </span>
+                </span>
             </div>
-          </div>`
+            </div>`
         }).join('\n');
         playList.innerHTML = htmls;  
         this.songActive();
