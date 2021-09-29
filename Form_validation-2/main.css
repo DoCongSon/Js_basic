@@ -1,0 +1,123 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  background-image: -webkit-gradient(linear, left top, right top, from(#d9a7c7), to(#fffcdc));
+  background-image: linear-gradient(90deg, #d9a7c7 0%, #fffcdc 100%);
+}
+
+.main {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.form {
+  width: 450px;
+  min-height: 500px;
+  padding: 32px;
+  background-color: #d3fcf7;
+  border-radius: 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px, rgba(0, 0, 0, 0.1) 0px 2px 4px, rgba(0, 0, 0, 0.1) 0px 4px 8px, rgba(0, 0, 0, 0.1) 0px 8px 16px, rgba(0, 0, 0, 0.1) 0px 16px 32px, rgba(0, 0, 0, 0.1) 0px 32px 64px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px, rgba(0, 0, 0, 0.1) 0px 2px 4px, rgba(0, 0, 0, 0.1) 0px 4px 8px, rgba(0, 0, 0, 0.1) 0px 8px 16px, rgba(0, 0, 0, 0.1) 0px 16px 32px, rgba(0, 0, 0, 0.1) 0px 32px 64px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  color: #93424b;
+}
+
+.form h2 {
+  font-size: 2.4rem;
+}
+
+.form p {
+  margin-top: 4px;
+  font-size: 1.4rem;
+  color: #f56e7d;
+}
+
+.form .spacer {
+  margin-top: 40px;
+}
+
+.form .form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.form .form-group .form-label {
+  text-align: left;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.form .form-group .form-control {
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #93424b;
+  border-radius: 4px;
+  font-size: 1.6rem;
+  outline: none;
+  background-color: #f8fefa;
+}
+
+.form .form-group .form-control:hover {
+  border: 1px solid #30db92;
+}
+
+.form .form-group .form-message {
+  font-size: 1.4rem;
+  text-align: left;
+  margin-top: 4px;
+  color: #db3c30;
+}
+
+.form .form-group.invalid .form-control {
+  border: 1px solid #db3c30;
+}
+
+.form .form-group.invalid .form-control:hover {
+  border: 1px solid #db3c30;
+}
+
+.form .form-submit {
+  background-image: -webkit-gradient(linear, left top, right top, from(#fc5c7d), to(#6a82fb));
+  background-image: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+  border: none;
+  height: 40px;
+  margin-top: 40px;
+  border-radius: 8px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px, rgba(0, 0, 0, 0.1) 0px 2px 4px, rgba(0, 0, 0, 0.1) 0px 4px 8px, rgba(0, 0, 0, 0.1) 0px 8px 16px, rgba(0, 0, 0, 0.1) 0px 16px 32px, rgba(0, 0, 0, 0.1) 0px 32px 64px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px, rgba(0, 0, 0, 0.1) 0px 2px 4px, rgba(0, 0, 0, 0.1) 0px 4px 8px, rgba(0, 0, 0, 0.1) 0px 8px 16px, rgba(0, 0, 0, 0.1) 0px 16px 32px, rgba(0, 0, 0, 0.1) 0px 32px 64px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+/*# sourceMappingURL=main.css.map */

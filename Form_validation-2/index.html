@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./main.css">
+    <title>Form validation</title>
+</head>
+<body>
+    <div class="main">
+        <form action="" method="post" class="form" id="form-validator">
+            <h2 class="heading">Thành viên đăng kí</h2>
+            <p class="description">Cùng nhau học lập trình miễn phí tại F8 ❤️</p>
+            <div class="spacer"></div>
+
+            <div class="form-group">
+                <label for="fullName" class="form-label">Họ và tên</label>
+                <input type="text" id="fullName" rules = "required" class="form-control" name="fullName" placeholder="Vd: Đỗ Công Sơn">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" rules="required|email" class="form-control" name="email" placeholder="Vd: email@domain.com">
+                <span class="form-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="password" class="form-label">Mật khẩu</label>
+                <input type="password" id="password" rules = "required|min:6" class="form-control" name="password" placeholder="Mật khẩu của bạn">
+                <span class="form-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="password_confirmation" class="form-label">Nhập lại mật khẩu</label>
+                <input type="password" id="password_confirmation" rules = "required|confirm;#password" class="form-control" name="password_confirmation" placeholder="Nhập lại mật khẩu">
+                <span class="form-message"></span>
+            </div>
+            <button class="form-submit" type="submit">Đăng ký</button>
+        </form>
+    </div>
+
+    <script src="./validator.js"></script>
+    <script>
+        const form = new Validator('#form-validator');
+        form.onSubmit = (data) => {
+            console.log(data);
+        }
+    </script>
+</body>
+</html>
